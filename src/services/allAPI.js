@@ -18,7 +18,7 @@ export const deleteBookAPI = async (id) => {
 
 
 
-export const saveVideoEditAPI= async (Details) => {
-    return await commonAPI("PUT",`${serverURL}/uploadBooks/${Details.id}`,Details)
+export const saveVideoEditAPI= async (Details,id) => {
+    return await commonAPI("PUT",`${serverURL}/uploadBooks/${id}`,Details)
 }
 

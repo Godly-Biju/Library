@@ -19,7 +19,7 @@ function App() {
   },[])
 
   const [allBooks,setallBooks] = useState([])
-
+  const [Edit,setEdit]=useState("")
 
   const[videoDetails,setvideoDetails]= useState({
     caption:"",imageUrl:""
@@ -62,8 +62,8 @@ function App() {
         try {
             const result = await saveVideoEditAPI(videoDetailsEdit) 
                 if(result.status>=200 && result.status<300){
-                    alert("Video Uploaded successfully !!")
-                    handleClose()
+                    alert("Book Uploaded successfully !!")
+                    handleCloseEdit()
                 }
                 else{
                     console.log(result);
@@ -91,7 +91,7 @@ const handleUploadVideoEdit = async () =>{
   if (caption && imageUrl ){
       // Store permanently
       try {
-          const result = await saveVideoEditAPI(videoDetailsEdit) 
+          const result = await saveVideoEditAPI(videoDetailsEdit,Edit) 
               if(result.status>=200 && result.status<300){
                   alert("Video Uploaded successfully !!")
                   handleCloseEdit()
@@ -215,7 +215,7 @@ const handleUploadVideoEdit = async () =>{
                   <div className='d-flex justify-content-between'>
                     <Button variant="primary">Go somewhere</Button>
                     <i class="fa-solid fa-trash" onClick={()=>delete1(Book.id)}></i>
-                    <button onClick={handleShowEdit}>Edit</button>
+                    <button onClick={() => { setEdit(Book.id); handleShowEdit(); }}>Edit</button>
                   </div>
                 </Card.Body>
               </Card>
